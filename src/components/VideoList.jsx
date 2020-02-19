@@ -1,8 +1,11 @@
 import exampleVideoData from '../data/exampleVideoData.js';
+import VideoListEntry from './VideoListEntry.js';
 
 var VideoList = () => (
   <div className="video-list">
-    <VideoListEntry />
+    {exampleVideoData.map(video => (
+      <VideoListEntry />
+    ))}
   </div>
 );
 

@@ -11,6 +11,18 @@ class App extends React.Component {
       currentVideo: exampleVideoData[0]
     };
   }
+  // handleTitleClick = () => {
+  //   // this.setState({
+  //   //   currentVideo: //e.props.video from clicked video
+  //   // });
+  // }
+  handleTitleClick(title) {
+    console.log('clicked');
+    this.setState({
+      currentVideo: title
+    });
+  }
+
   render() {
     return (<div>
       <nav className="navbar">
@@ -23,7 +35,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo} />
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.videos}/>
+          <VideoList videos={this.state.videos} clickHandler={this.handleTitleClick.bind(this)}/>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import exampleVideoData from '../data/exampleVideoData.js';
+import searchYouTube from '../lib/searchYouTube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 class App extends React.Component {
@@ -17,11 +19,14 @@ class App extends React.Component {
   //   // });
   // }
   handleTitleClick(title) {
-    console.log('clicked');
     this.setState({
       currentVideo: title
     });
   }
+
+  // componentDidMount() {
+  //   searchYouTube({key: YOUTUBE_API_KEY, query: 'React JS', max: 5}, ()=>{});
+  // }
 
   render() {
     return (<div>

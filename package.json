@@ -10,6 +10,7 @@
     "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash"
   },
   "dependencies": {
+    "@babel/core": "^7.8.4",
     "bootstrap": "^4.0.0-alpha.2",
     "jquery": "^2.2.1",
     "lodash": "^4.6.1",

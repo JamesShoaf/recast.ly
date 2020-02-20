@@ -1,38 +1,51 @@
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
+import Search from './Search.js';
 import exampleVideoData from '../data/exampleVideoData.js';
-import searchYouTube from '../lib/searchYouTube.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 class App extends React.Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
       videos: exampleVideoData,
       currentVideo: exampleVideoData[0]
     };
   }
-  // handleTitleClick = () => {
-  //   // this.setState({
-  //   //   currentVideo: //e.props.video from clicked video
-  //   // });
-  // }
+
+  getYouTubeVideos(query) {
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: query
+    };
+    this.props.searchYouTube(options,
+      (videos) => {
+        this.setState(
+          {
+            videos: videos,
+            currentVideo: videos[0]
+          }
+        );
+      }
+    );
+  }
+
+  componentDidMount() {
+    this.getYouTubeVideos('horses');
+  }
+
   handleTitleClick(title) {
     this.setState({
       currentVideo: title
     });
   }
 
-  // componentDidMount() {
-  //   searchYouTube({key: YOUTUBE_API_KEY, query: 'React JS', max: 5}, ()=>{});
-  // }
-
   render() {
     return (<div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em> view goes here</h5></div>
+          <Search search={this.getYouTubeVideos.bind(this)}/>
         </div>
       </nav>
       <div className="row">
@@ -48,7 +61,5 @@ class App extends React.Component {
   }
 }
 
-// In the ES6 spec, files are "modules" and do not share a top-level scope
-// `var` declarations will only exist globally where explicitly defined
 export default App;
 
